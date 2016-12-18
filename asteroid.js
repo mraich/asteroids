@@ -3,6 +3,8 @@
 // http://patreon.com/codingrainbow
 // Code for: https://youtu.be/hacZU523FyM
 
+var ateroid_color = [[255, 255, 255], [0, 0, 255]]
+
 function Asteroid(pos, r, size) {
   if (pos == null) {
     pos = createVector(random(width), random(height));
@@ -13,6 +15,14 @@ function Asteroid(pos, r, size) {
 
   this.vel = p5.Vector.random2D();
   this.total = floor(random(7, 15));
+  this.type = 0; // 0 - normal, 1 - fuel
+  if (size == 0)
+  {
+	  if (random(1, 10) > 8)
+	  {
+		  this.type = 1;
+	  }
+  }
 
   //smaller asteroids go a bit faster
   this.size = size;
@@ -33,8 +43,9 @@ function Asteroid(pos, r, size) {
 
   this.render = function() {
     push();
-    stroke(255);
-    noFill();
+	stroke(ateroid_color[this.type][0], ateroid_color[this.type][1], ateroid_color[this.type][2]);
+	fill(ateroid_color[this.type][0], ateroid_color[this.type][1], ateroid_color[this.type][2]);
+
     translate(this.pos.x, this.pos.y);
     rotate(this.heading);
     beginShape();
@@ -52,6 +63,8 @@ function Asteroid(pos, r, size) {
   }
 
   this.breakup = function() {
+	if (this.type==0)
+	{
     if(size > 0)
    {
 		var new_asteroids_count = 4;
@@ -72,6 +85,11 @@ function Asteroid(pos, r, size) {
     }
     else
       return [];
+	}
+	if (this.type == 1)
+	{
+		return [];
+	}
   }
 
   this.vertices = function() {
