@@ -59,6 +59,13 @@ function Asteroid(pos, r, size) {
 		for(var i = 0; i < new_asteroids_count; i++)
 		{
 			var new_asteroid = new Asteroid(this.pos, this.r, this.size-1);
+			{
+				{
+					// The direction of the new asteroid direction is just slightly different from the parent asteroid.
+					new_asteroid.vel = this.vel.copy();
+					new_asteroid.vel.add(random(-.7, .7), random(-.7, .7));
+				}
+			}
 			asteroids_broke.push(new_asteroid);
 		}
 		return asteroids_broke;
