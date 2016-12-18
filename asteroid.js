@@ -54,7 +54,7 @@ function Asteroid(pos, r, size) {
   this.breakup = function() {
     if(size > 0)
    {
-		var new_asteroids_count = 2;
+		var new_asteroids_count = 4;
 		var asteroids_broke = [];
 		for(var i = 0; i < new_asteroids_count; i++)
 		{
