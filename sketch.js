@@ -59,9 +59,7 @@ function draw() {
       if (lasers[i].hits(asteroids[j])) {
         asteroids[j].playSoundEffect(explosionSoundEffects);
         score += points[asteroids[j].size];
-        var newAsteroids = asteroids[j].breakup();
-        asteroids = asteroids.concat(newAsteroids);
-        asteroids.splice(j, 1);
+		destroyAsteroid(j);
         lasers.splice(i, 1);
         if(asteroids.length == 0) {
           level++;
@@ -112,4 +110,14 @@ function lineIntersect(l1v1, l1v2, l2v1, l2v2) {
   } else {
     return false;
   }
+}
+
+function destroyAsteroid(i)
+{
+	if (typeof asteroids[i] !== 'undefined')
+	{
+		var newAsteroids = asteroids[i].breakup();
+		asteroids = asteroids.concat(newAsteroids);
+		asteroids.splice(i, 1);
+	}
 }
