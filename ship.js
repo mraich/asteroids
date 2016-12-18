@@ -25,7 +25,6 @@ function Ship(pos, r) {
 
   this.update = function() {
     Entity.prototype.update.call(this);
-    this.vel.mult(0.99);
     if(this.isDestroyed) {
       for(var i = 0; i < this.brokenParts.length; i++) {
         this.brokenParts[i].pos.add(this.brokenParts[i].vel);
@@ -33,7 +32,6 @@ function Ship(pos, r) {
         this.brokenParts[i].heading += this.brokenParts[i].rot;
       }
     } else {
-      this.vel.mult(0.99);
     }
     if (this.shields > 0) {
       this.shields -= 1;
