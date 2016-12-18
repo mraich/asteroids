@@ -34,7 +34,7 @@ function draw() {
   for(var i = 0; i < asteroids.length; i++) {
     if(ship.hits(asteroids[i]) && canPlay) {
       canPlay = false;
-      ship.destroy();
+      ship.destroy(asteroids[i]);
       input.reset();
       setTimeout(function() {
         lives--;

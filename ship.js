@@ -29,6 +29,7 @@ function Ship(pos, r) {
     if(this.isDestroyed) {
       for(var i = 0; i < this.brokenParts.length; i++) {
         this.brokenParts[i].pos.add(this.brokenParts[i].vel);
+        this.brokenParts[i].pos.add(this.brokenParts[i].inertia);
         this.brokenParts[i].heading += this.brokenParts[i].rot;
       }
     } else {
@@ -40,15 +41,17 @@ function Ship(pos, r) {
   }
 
   this.brokenParts = [];
-  this.destroy = function() {
+  this.destroy = function(asteroid) {
     this.isDestroyed = true;
     for(var i = 0; i < 4; i++)
       this.brokenParts[i] = {
         pos: this.pos.copy(),
         vel: p5.Vector.random2D(),
+        inertia: asteroid.vel.copy(),
         heading: random(0, 360),
         rot: random(-0.07, 0.07)
       };
+	asteroid.vel = this.vel.copy();
   }
 
   this.hits = function(asteroid) {
