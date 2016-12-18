@@ -53,7 +53,16 @@ function Asteroid(pos, r, size) {
 
   this.breakup = function() {
     if(size > 0)
-      return [new Asteroid(this.pos, this.r, this.size-1), new Asteroid(this.pos, this.r, this.size-1)];
+   {
+		var new_asteroids_count = 2;
+		var asteroids_broke = [];
+		for(var i = 0; i < new_asteroids_count; i++)
+		{
+			var new_asteroid = new Asteroid(this.pos, this.r, this.size-1);
+			asteroids_broke.push(new_asteroid);
+		}
+		return asteroids_broke;
+    }
     else
       return [];
   }
