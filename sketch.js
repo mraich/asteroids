@@ -45,7 +45,10 @@ function draw() {
         }
       }, 3000);
     }
+	if (typeof asteroids[i] !== 'undefined')
+	{
     asteroids[i].update();
+	}
   }
 
   for(var i = lasers.length - 1; i >= 0; i--) {
