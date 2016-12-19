@@ -61,7 +61,6 @@ function draw() {
 
     for (var j = asteroids.length - 1; j >= 0; j--) {
       if (lasers[i].hits(asteroids[j])) {
-        asteroids[j].playSoundEffect(explosionSoundEffects);
         score += points[asteroids[j].size];
 		destroyAsteroid(j);
         lasers.splice(i, 1);
@@ -120,6 +119,7 @@ function destroyAsteroid(i)
 {
 	if (typeof asteroids[i] !== 'undefined')
 	{
+		asteroids[i].playSoundEffect(explosionSoundEffects);
 		var newAsteroids = asteroids[i].breakup();
 		asteroids = asteroids.concat(newAsteroids);
 		asteroids.splice(i, 1);
